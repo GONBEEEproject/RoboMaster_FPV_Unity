@@ -1,0 +1,15 @@
+[uDD::Log][2019-07-18 19:01:36] Start
+[uDD::Log][2019-07-18 19:01:36] OS Version    : 10.0
+[uDD::Log][2019-07-18 19:01:36] Build Number  : 17134
+[uDD::Log][2019-07-18 19:01:36] Service Pack  : 
+[uDD::Log][2019-07-18 19:01:36] Graphics Card [0] : NVIDIA GeForce GTX 1070
+[uDD::Log][2019-07-18 19:01:36]   > Monitor[0] : \\.\DISPLAY1
+[uDD::Log][2019-07-18 19:01:36] Graphics Card [1] : Intel(R) HD Graphics 630
+[uDD::Log][2019-07-18 19:01:36] Graphics Card [2] : Microsoft Basic Render Driver
+[uDD::Log][2019-07-18 19:01:36] Monitor::Initialized() =>
+[uDD::Log][2019-07-18 19:01:36]     ID    : 0
+[uDD::Log][2019-07-18 19:01:36]     Size  : (1920, 1080)
+[uDD::Log][2019-07-18 19:01:36]     DPI   : (141, 141)
+[uDD::Log][2019-07-18 19:01:36]     Rot   : Landscape
+[uDD::Err][2019-07-18 19:01:36] Duplicator::Initialize() => Unsupported display.
+[uDD::Log][2019-07-18 19:02:59] Stop

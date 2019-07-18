@@ -19,7 +19,6 @@ public class InteractBuffer : MonoBehaviour
 
     [SerializeField]
     private SteamVR_TrackedObject leftHand, rightHand;
-    private SteamVR_Controller.Device lDevice, rDevice;
 
     [SerializeField]
     private Transform head;
@@ -42,17 +41,14 @@ public class InteractBuffer : MonoBehaviour
 
     private int mouse_X, mouse_Y;
 
-
-    //private void Start()
-    //{
-    //    lDevice = SteamVR_Controller.Input((int)leftHand.index);
-    //    rDevice = SteamVR_Controller.Input((int)rightHand.index);
-    //}
-
     private void Update()
     {
         mouse_X = System.Windows.Forms.Cursor.Position.X;
         mouse_Y = System.Windows.Forms.Cursor.Position.Y;
+
+        var lDevice = SteamVR_Controller.Input((int)leftHand.index);
+        var rDevice = SteamVR_Controller.Input((int)rightHand.index);
+
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -64,37 +60,38 @@ public class InteractBuffer : MonoBehaviour
             SetCursorPos(mouse_X + 1, mouse_Y + 1);
         }
 
-        //var moveAxis = lDevice.GetAxis();
-        //if (moveAxis.x > 0.3f)
-        //{
-        //    Right();
-        //}
-        //if(moveAxis.x<-0.3f)
-        //{
-        //    Left();
-        //}
-        //if (moveAxis.y > 0.3f)
-        //{
-        //    Forward();
-        //}
-        //if(moveAxis.y<-0.3f)
-        //{
-        //    Backward();
-        //}
+        var moveAxis = lDevice.GetAxis();
+        if (moveAxis.x > 0.3f)
+        {
+            Right();
+        }
+        if (moveAxis.x < -0.3f)
+        {
+            Left();
+        }
+        if (moveAxis.y > 0.3f)
+        {
+            Forward();
+        }
+        if (moveAxis.y < -0.3f)
+        {
+            Backward();
+        }
 
-        //var lookAxis = rDevice.GetAxis();
-        //SetCursorPos(mouse_X + (int)(lookAxis.x * 100), mouse_Y + (int)(lookAxis.y * 100));
+        var lookAxis = rDevice.GetAxis();
+        SetCursorPos(mouse_X + (int)(lookAxis.x * 20), mouse_Y - (int)(lookAxis.y * 20));
+        Debug.Log(lookAxis);
 
-        SetCursorPos(mouse_X + (int)((head.rotation.eulerAngles.y - prevHead.y)*headRot), mouse_Y + (int)((head.rotation.eulerAngles.x - prevHead.x)*headRot));
+        //SetCursorPos(mouse_X + (int)((head.rotation.eulerAngles.y - prevHead.y)*headRot), mouse_Y + (int)((head.rotation.eulerAngles.x - prevHead.x)*headRot));
 
-        //if (rDevice.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
-        //{
-        //    Shoot();
-        //}
-        //if (rDevice.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
-        //{
-        //    StopShoot();
-        //}
+        if (rDevice.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+        {
+            Shoot();
+        }
+        if (rDevice.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
+        {
+            StopShoot();
+        }
     }
 
     private void LateUpdate()
@@ -109,22 +106,22 @@ public class InteractBuffer : MonoBehaviour
     
     public void Backward()
     {
-        SendKeys.Send("s");
+        SendKeys.SendWait("s");
     }
 
     public void Right()
     {
-        SendKeys.Send("d");
+        SendKeys.SendWait("d");
     }
 
     public void Left()
     {
-        SendKeys.Send("a");
+        SendKeys.SendWait("a");
     }
 
     public void Reload()
     {
-        SendKeys.Send("r");
+        SendKeys.SendWait("r");
     }
 
     
